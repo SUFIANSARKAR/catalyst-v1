@@ -38,10 +38,11 @@ Open `http://127.0.0.1:8000`. Unlock **Creator Admin** for enhanced personality,
 ## Docker / Codespaces
 
 ```bash
+test -f .env || cp .env.example .env
 docker compose up --build
 ```
 
-The compose file persists `catalyst_data/` and `workspace/`. GitHub Codespaces can use `bash run.sh` and forward port 8000.
+Set provider and admin values in `.env` before deployment. The compose file persists `catalyst_data/` and `workspace/`. GitHub Codespaces can use `bash run.sh` and forward port 8000.
 
 ## Permanent memory
 
@@ -75,6 +76,8 @@ CATALYST_CORS_ORIGINS=http://127.0.0.1:8000,http://localhost:8000
 ```
 
 See `.env.example` for memory, voice, browser, autonomy, sandbox, integration, and deployment settings.
+
+`CATALYST_API_KEY`, `CATALYST_MODEL`, and `CATALYST_BASE_URL` are the canonical direct provider settings. For compatibility, `tools/bootstrap.sh` can also seed DeepSeek (`DEEPSEEK_API_KEY` and related `DEEPSEEK_*`), OpenAI voice (`OPENAI_API_KEY` and `OPENAI_TTS_*`), and Hugging Face image (`HF_TOKEN` and `HF_IMAGE_MODEL`) profiles into `catalyst_data/secrets.json`. It creates each profile only when absent; changing a legacy variable does not overwrite an already-saved profile.
 
 ## Safety model
 

@@ -1214,7 +1214,6 @@ def compact_session(session_id):
     except Exception as e: raise HTTPException(400,str(e))
 @app.post('/api/chat')
 def chat(req:ChatRequest, request:Request):
-    _require_admin_mode(request)
     sid=sessions.ensure(req.session_id)
     try:
         avatar_controller.set('thinking', emotion='focused', action='think', hint='Thinking through your request.', source='cognition')

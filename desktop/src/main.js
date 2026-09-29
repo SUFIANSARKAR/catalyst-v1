@@ -1,8 +1,7 @@
 import { invoke } from '@tauri-apps/api/core';
 
-const root = document.querySelector('#app');
+const root = document.querySelector('.shell');
 root.innerHTML = `
-<main class="shell">
   <header><div><h1>Catalyst</h1><p>Desktop companion · authenticated device bridge</p></div><span id="badge">OFFLINE</span></header>
   <section class="grid">
     <label>API URL<input id="url" value="http://127.0.0.1:8000"></label>
@@ -11,7 +10,7 @@ root.innerHTML = `
   </section>
   <div class="row"><button id="connect">Connect</button><button id="disconnect">Disconnect</button><button id="sys">System info</button></div>
   <pre id="log">Ready.</pre>
-</main>`;
+`;
 
 const $ = (id) => document.getElementById(id);
 let connected = false, deviceId = '', deviceToken = '', timer = null;

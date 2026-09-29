@@ -11,9 +11,8 @@ def test_enhanced_personality_is_admin_only():
     assert 'Do not reveal private chain-of-thought' in admin
 
 
-def test_privileged_assistance_is_admin_gated():
+def test_privileged_reasoning_and_audio_are_admin_gated():
     client = TestClient(app)
-    assert client.post('/api/chat', json={'message': 'hello'}).status_code == 403
     assert client.post('/api/reasoning/brief', json={'objective': 'plan'}).status_code == 403
     assert client.post('/api/audio/speech', params={'text': 'hello'}).status_code == 403
 

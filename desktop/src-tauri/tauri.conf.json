@@ -1,0 +1,1 @@
+{"productName":"Catalyst","version":"2.0.0","identifier":"com.catalyst.desktop","build":{"frontendDist":"../dist"},"app":{"windows":[{"title":"Catalyst","width":1440,"height":920,"resizable":true}],"security":{"csp":null}},"bundle":{"active":false}}

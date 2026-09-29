@@ -1,0 +1,9 @@
+PROTOCOL_VERSION='catalyst.device.v1'
+SUPPORTED_PLATFORMS=('desktop-tauri','android','web')
+SUPPORTED_ACTIONS=(
+ 'open_url','open_file','focus_app','launch_app','show_notification',
+ 'capture_screen','get_system_info','set_clipboard','get_clipboard',
+ 'start_voice','stop_voice','lock_device'
+)
+READ_ONLY_ACTIONS={'capture_screen','get_system_info','get_clipboard'}
+CONSEQUENTIAL_ACTIONS={'open_file','focus_app','launch_app','set_clipboard','start_voice','stop_voice','lock_device'}

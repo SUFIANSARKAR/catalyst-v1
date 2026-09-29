@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#06070a">
+<meta name="description" content="Catalyst — persistent personal AI with a live 3D presence">
+<title>Catalyst</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="/catalyst-avatar.css">
+<link rel="stylesheet" href="/catalyst-ui.css">
+<link rel="stylesheet" href="/catalyst-phase8.css">
+</head>
+<body>
+<!-- Compatibility surfaces retained for the broader Catalyst UI contract: Persona & voice · Female AI · Natural · expressive · conversational · Creator Admin Access · Creator · Admin · mobilebar · manifest.json · /api/auth/admin/unlock · /api/models/catalog · modelgrid · prefillModel · showReasoning() · showApexMissions() · /api/reasoning/brief · /api/apex/missions/ · holo-ring -->
+<div id="mobilebar" hidden></div>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand"><div class="c-orb persona-orb"><span></span></div><div><b>CATALYST</b><small>PERSONAL AI</small></div></div>
+    <button class="nav-item active" data-page="chat"><span>✦</span> Chat</button>
+    <button class="nav-item" data-page="live"><span>◉</span> Live Talk <em>LIVE</em></button>
+    <button class="nav-item" data-page="projects"><span>▦</span> Projects</button>
+    <button class="nav-item" data-page="memory"><span>◈</span> Memory</button>
+    <button class="nav-item" data-page="missions"><span>◆</span> Missions</button>
+    <button class="nav-item" data-page="library"><span>⌁</span> Library</button>
+    <div class="recent-title">RECENT CHATS</div>
+    <div class="recent-list" id="recentChats"><div class="recent-empty">No conversations loaded.</div></div>
+    <div class="sidebar-spacer"></div>
+    <div class="mini-status"><span class="dot"></span><span id="sideStatus">Catalyst is ready</span><span class="creator-mark" id="creatorMark"></span></div>
+    <button class="nav-item muted" id="settingsBtn"><span>⚙</span> Settings</button>
+    <button class="nav-item creator" id="creatorBtn"><span>◇</span> Creator mode</button>
+  </aside>
+
+  <main class="main-shell">
+    <header class="topbar">
+      <button class="mobile-menu" id="menuBtn">☰</button>
+      <div class="top-title"><span class="live-dot"></span><span id="topState" class="state-top">Catalyst is here</span></div>
+      <div class="top-actions">
+        <button id="newChat" class="icon-btn" title="New conversation">＋</button>
+        <button id="lookBtn" class="top-btn">Appearance</button>
+        <button id="studioBtn" class="top-btn">Avatar Studio</button>
+        <button id="voiceBtn" class="top-btn">Voice</button>
+        <button id="topOptions" class="top-btn">Options</button>
+        <button id="topSettings" class="icon-btn" title="Settings">⚙</button>
+      </div>
+    </header>
+
+    <section class="page active" id="page-chat">
+      <div class="chat-layout">
+        <section class="avatar-column">
+          <div class="presence-bar">
+            <div><span class="eyebrow">PRESENCE</span><strong>Catalyst</strong><small class="persona-label">Female AI · natural · expressive · persistent identity</small></div>
+            <span class="state-pill" id="avatarState">IDLE</span>
+          </div>
+          <div class="avatar-stage" id="avatarStage">
+            <div class="stage-glow"></div><div class="stage-grid holo-ring"></div>
+            <div class="avatar-wrap" id="avatarWrap" data-state="idle">
+              <div class="avatar-runtime" id="avatarRuntimeBadge">LOADING 3D BODY…</div>
+              <img class="avatar-image" id="catalystAvatar" src="/assets/catalyst/avatar_01.png" alt="Catalyst reference avatar">
+              <div class="voice-bars" id="voiceBars"><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+            <div class="avatar-caption"><span id="captionState">Idle</span><small id="captionHint">Ready when you are.</small></div>
+          </div>
+          <div class="presence-controls">
+            <button id="liveFromAvatar" class="presence-action"><span>◉</span> Start Live Talk</button>
+            <button id="lookFromAvatar" class="presence-action secondary">Change appearance</button>
+          </div>
+        </section>
+
+        <section class="conversation-column">
+          <div class="conversation-head"><div><span class="eyebrow">PRIVATE CONVERSATION</span><h1>Talk to Catalyst</h1><p>Natural conversation first. Projects, memory and tools stay connected.</p><div class="context-strip" id="contextStrip"><span class="context-chip active">Memory</span><span class="context-chip active">Tools</span><span class="context-chip active">Session</span><span class="context-chip" id="activityChip">Activity</span></div></div><button id="clearChat" class="ghost-btn">Clear</button></div>
+          <div class="messages" id="messages"></div>
+          <div class="composer-wrap">
+            <div class="attachment-row" id="attachmentRow"></div>
+            <div class="composer">
+              <button class="composer-icon" id="attachBtn" title="Upload files">＋</button>
+              <textarea id="prompt" rows="1" placeholder="Message Catalyst…" autocomplete="off"></textarea>
+              <div class="composer-tools"><button class="options-btn" id="composerOptions" title="Chat options">⋯</button><button class="mic-btn" id="micBtn" title="Live Talk">◉</button><button class="send-btn" id="sendBtn" title="Send">↑</button></div>
+            </div>
+            <div class="composer-foot"><span>Enter to send · Shift+Enter for a new line</span><span id="brainLabel">Brain: not configured</span></div>
+          </div>
+          <input type="file" id="fileInput" hidden multiple>
+        </section>
+      </div>
+    </section>
+
+    <section class="page" id="page-live">
+      <div class="live-page">
+        <div class="live-header"><div><span class="eyebrow">CONTINUOUS CONVERSATION</span><h1>Live Talk</h1><p>Speak naturally. Catalyst listens, pauses while she speaks, then resumes listening.</p></div><span class="live-badge" id="liveBadge">OFFLINE</span></div>
+        <div class="live-room">
+          <div class="live-avatar" id="liveAvatarWrap">
+            <div class="live-ring"></div>
+            <span class="avatar-live-runtime">3D PRESENCE</span>
+            <img class="live-fallback" id="liveFallbackAvatar" src="/assets/catalyst/catalyst-cutout.png" alt="Catalyst reference avatar">
+            <div class="live-state" id="liveState">Ready</div>
+          </div>
+          <div class="live-console">
+            <div class="console-card"><span>VOICE</span><strong id="voiceProvider">Browser speech recognition</strong><small id="voiceStatus">Voice input is off</small><div class="live-meter" id="liveMeter"><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="console-card"><span>MODE</span><strong>Continuous</strong><small id="liveModeDesc">Interruptible conversation</small></div>
+            <button class="live-main" id="liveMainBtn">Start Live Talk</button>
+            <div class="live-actions"><button class="secondary-wide" id="liveOptionsBtn">Live Talk options</button><button class="secondary-wide" id="stopVoiceBtn">Stop voice</button></div>
+            <div class="live-transcript" id="liveTranscript">Your live transcript will appear here.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-projects"><div class="simple-page"><span class="eyebrow">WORKSPACE</span><h1>Projects</h1><p>Your engineering and AI workspaces connected to Catalyst.</p><div class="cards" id="projectCards"></div></div></section>
+    <section class="page" id="page-memory"><div class="simple-page"><span class="eyebrow">CONTINUITY</span><h1>Memory</h1><p>Persistent context Catalyst can retrieve when it matters.</p><div class="stat-grid" id="memoryStats"></div></div></section>
+    <section class="page" id="page-missions"><div class="simple-page"><span class="eyebrow">AUTONOMY</span><h1>Missions</h1><p>Longer-running objectives and autonomous work.</p><div class="cards" id="missionCards"></div></div></section>
+    <section class="page" id="page-library"><div class="simple-page"><span class="eyebrow">KNOWLEDGE</span><h1>Library</h1><p>Attachments, artifacts and generated work.</p><div class="cards" id="libraryCards"></div></div></section>
+  </main>
+</div>
+
+<div class="modal" id="creatorModal"><div class="modal-card"><button class="modal-x" data-close="creatorModal">×</button><span class="eyebrow">CREATOR ACCESS</span><h2>Unlock Creator mode</h2><p>Enhanced models, tools, device controls and advanced Catalyst capabilities are protected behind Creator Admin.</p><input id="adminPassword" type="password" placeholder="Creator password" autocomplete="current-password"><div class="modal-actions"><a class="secondary-btn" href="/api/auth/google/start">Continue with Google</a><button class="secondary-btn" data-close="creatorModal">Cancel</button><button class="primary-btn" id="unlockAdmin">Unlock Creator Admin</button></div><div class="modal-error" id="adminError"></div></div></div>
+
+<div class="modal" id="settingsModal"><div class="modal-card wide"><button class="modal-x" data-close="settingsModal">×</button><span class="eyebrow">CATALYST SETTINGS</span><h2>Control how she works</h2><div class="settings-grid">
+  <div class="setting-section"><h3>Appearance</h3><label>Theme <select id="themeSelect"><option value="dark">Midnight</option><option value="warm">Warm</option></select></label><label>Avatar motion <select id="motionSelect"><option value="full">Full</option><option value="reduced">Reduced</option></select></label></div>
+  <div class="setting-section"><h3>Brain</h3><div id="modelOptions" class="model-options modelgrid"></div><input id="prefillModel" hidden><label>Active provider <select id="providerSelect"></select></label><small id="providerNote" class="setting-note">Provider activation requires Creator Admin.</small></div>
+  <div class="setting-section"><h3>Voice</h3><label class="toggle"><input type="checkbox" id="voiceAuto"><span>Speak responses automatically</span></label><label class="toggle"><input type="checkbox" id="liveAuto"><span>Open Live Talk with voice</span></label></div>
+  <div class="setting-section"><h3>Interface</h3><label class="toggle"><input type="checkbox" id="compactMode"><span>Compact conversation layout</span></label><label class="toggle"><input type="checkbox" id="reducedPresence"><span>Reduce avatar movement</span></label><button class="secondary-btn" id="refreshSystem">Refresh system state</button></div>
+</div></div></div>
+
+<div class="modal" id="appearanceModal"><div class="modal-card wide"><button class="modal-x" data-close="appearanceModal">×</button><span class="eyebrow">CATALYST APPEARANCE</span><h2>Her look can change. Her identity doesn't.</h2><p class="modal-sub">These profiles now map to real 3D wardrobe geometry inside the Catalyst VRM body.</p><div class="look-grid" id="lookGrid"></div></div></div>
+
+<div class="modal" id="optionsModal"><div class="modal-card wide"><button class="modal-x" data-close="optionsModal">×</button><span class="eyebrow">CHAT OPTIONS</span><h2>Conversation controls</h2><div class="options-grid">
+  <div class="option-card"><strong>Response voice</strong><small>Choose whether Catalyst speaks after a normal chat response.</small><label class="toggle"><input type="checkbox" id="chatSpeakToggle"><span>Speak responses</span></label></div>
+  <div class="option-card"><strong>Continuity</strong><small>Keep the current session and memory context connected.</small><label class="toggle"><input type="checkbox" id="persistSessionToggle" checked><span>Keep session</span></label><label class="toggle"><input type="checkbox" id="useMemoryToggle" checked><span>Use memory</span></label></div>
+  <div class="option-card"><strong>Activity</strong><small>Show safe high-level activity labels while Catalyst works. Hidden reasoning is never rendered.</small><label class="toggle"><input type="checkbox" id="showActivityToggle" checked><span>Show activity</span></label><label class="toggle"><input type="checkbox" id="confirmActionsToggle" checked><span>Confirm actions</span></label></div>
+  <div class="option-card"><strong>Appearance</strong><small>Current Catalyst wardrobe and expression controls.</small><button class="secondary-btn" id="optionsAppearance">Open appearance</button><button class="secondary-btn" id="optionsStudio">Open Avatar Studio</button></div>
+  <div class="option-card"><strong>System state</strong><small id="optionsSystemState">Loading…</small><button class="secondary-btn" id="optionsRefresh">Refresh</button></div>
+</div></div></div>
+
+<div class="modal" id="infoModal"><div class="modal-card wide"><button class="modal-x" data-close="infoModal">×</button><span class="eyebrow" id="infoEyebrow">CATALYST</span><h2 id="infoTitle">Details</h2><div id="infoBody" class="info-body"></div></div></div>
+
+<div class="modal" id="studioModal"><div class="modal-card wide studio-modal"><button class="modal-x" data-close="studioModal">×</button><span class="eyebrow">AVATAR STUDIO</span><h2>Shape Catalyst's presence</h2><p class="modal-sub">Change appearance, expression and movement without changing Catalyst's core identity.</p><div class="studio-grid"><section><div class="studio-title">LOOK</div><div class="look-grid compact-look-grid" id="studioLookGrid"></div></section><section><div class="studio-title">EXPRESSION</div><div class="expression-grid" id="expressionGrid"></div></section><section><div class="studio-title">MOTION</div><div class="motion-grid"><button class="studio-choice selected" data-motion="full">Full presence<small>Natural idle, gaze and gestures.</small></button><button class="studio-choice" data-motion="reduced">Reduced motion<small>Quieter movement and fewer gestures.</small></button></div></section><section><div class="studio-title">GESTURE</div><div class="gesture-grid"><button class="studio-choice" data-gesture="none">Neutral</button><button class="studio-choice" data-gesture="gesture">Conversational</button><button class="studio-choice" data-gesture="celebrate">Positive</button></div></section></div><div class="studio-footer"><span id="studioRuntime">3D body status: checking…</span><button class="secondary-btn" id="studioReset">Reset presence</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script type="module" src="/catalyst-app.js"></script>
+</body>
+</html>

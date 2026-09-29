@@ -1,0 +1,54 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+node_modules/
+dist/
+build/
+*.egg-info/
+.env
+.env.*
+!.env.example
+catalyst_data/*.db
+catalyst_data/**/*.db
+catalyst_data/*.db-wal
+catalyst_data/**/*.db-wal
+catalyst_data/*.db-shm
+catalyst_data/**/*.db-shm
+catalyst_data/*.sqlite*
+catalyst_data/**/*.sqlite*
+catalyst_data/learning.db
+catalyst_data/learning.db-*
+catalyst_data/sessions/*
+catalyst_data/attachments/*
+catalyst_data/artifacts/*
+catalyst_data/research/*
+catalyst_data/evidence/*
+catalyst_data/realtime_voice/*
+catalyst_data/secrets.json
+!catalyst_data/README.md
+
+# Workspace/runtime output created by the app at deploy time
+workspace/
+
+# Editor/OS cruft
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Desktop app build output
+desktop/src-tauri/target/
+desktop/node_modules/
+
+# Android build output
+android/.gradle/
+android/**/build/
+android/local.properties
+
+# Frontend build output (if a build step is ever added)
+frontend/node_modules/
+frontend/dist/

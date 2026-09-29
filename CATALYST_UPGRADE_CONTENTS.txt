@@ -1,0 +1,5 @@
+Catalyst upgrade overlay on original repository.
+Preserved original repository contents, including embedded source archives.
+Upgraded frontend/index.html and catalyst/api/server.py.
+Added Catalyst frontend avatar assets and avatar CSS.
+Excluded runtime-generated database WAL/SHM files created during validation.

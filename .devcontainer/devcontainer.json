@@ -1,0 +1,17 @@
+{
+  "name": "Catalyst 5.6.0",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
+  "postCreateCommand": "bash tools/setup.sh && python -m pip install -e '.[dev]' && (python -m playwright install --with-deps chromium || true)",
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": {"label": "Catalyst holographic command deck", "onAutoForward": "openPreview"}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "ms-python.vscode-pylance"]
+    }
+  },
+  "remoteEnv": {
+    "PYTHONPATH": "${containerWorkspaceFolder}"
+  }
+}

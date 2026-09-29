@@ -1,0 +1,107 @@
+{
+  "name": "Catalyst Avatar",
+  "version": "8.0",
+  "canonical_identity": "avatar_01.png",
+  "purpose": "Canonical appearance and runtime specification for Catalyst's live 3D presence.",
+  "identity_rules": [
+    "Reference images are appearance references, not separate identities.",
+    "Catalyst retains one consistent identity while changing clothes, expressions, poses and environments.",
+    "The installed catalyst.vrm is the runtime body; reference images remain the visual fallback and design source.",
+    "The renderer must never claim sentience; animated behavior is driven by Catalyst application state, voice activity and user interaction."
+  ],
+  "states": [
+    "idle",
+    "listening",
+    "thinking",
+    "speaking",
+    "interrupted",
+    "success",
+    "error",
+    "away"
+  ],
+  "emotions": [
+    "neutral",
+    "warm",
+    "focused",
+    "curious",
+    "happy",
+    "serious",
+    "concerned",
+    "surprised",
+    "playful",
+    "sad"
+  ],
+  "actions": [
+    "idle",
+    "breathe",
+    "listen",
+    "think",
+    "speak",
+    "gesture",
+    "celebrate",
+    "concern",
+    "reset"
+  ],
+  "appearance": {
+    "hair": "long dark near-black hair with violet/blue accent highlights",
+    "style": "cinematic realistic-futuristic personal AI presence",
+    "personality_visual": "calm, intelligent, warm, approachable, futuristic without a dashboard-like aesthetic",
+    "wardrobe": "variable while identity remains stable",
+    "wardrobe_profiles": {
+      "signature": "Cream + lilac Catalyst signature look.",
+      "lounge": "Soft relaxed everyday look.",
+      "focus": "Charcoal creator/deep-work look with violet accent.",
+      "night": "Dark evening look with cool-tech trim."
+    }
+  },
+  "model": {
+    "format": "VRM 1.0",
+    "path": "/assets/catalyst/catalyst.vrm",
+    "body_style": "segmented weighted-skin humanoid alpha",
+    "humanoid_bones": 23,
+    "skinned_mesh": true,
+    "spring_bone": true,
+    "runtime_expression_controller": true,
+    "runtime_gesture_controller": true,
+    "runtime_lip_sync": true,
+    "skin_count": 1,
+    "expression_presets": [
+      "blink",
+      "blinkLeft",
+      "blinkRight",
+      "aa",
+      "ih",
+      "oh",
+      "ee",
+      "ou",
+      "happy",
+      "sad",
+      "surprised",
+      "angry",
+      "relaxed"
+    ],
+    "custom_expressions": [
+      "concerned",
+      "curious",
+      "focused",
+      "neutral",
+      "playful",
+      "serious",
+      "thinking",
+      "warm"
+    ]
+  },
+  "assets": {
+    "avatar_01.png": "Canonical face/identity reference.",
+    "avatar_02.png": "Casual technology/workspace reference.",
+    "avatar_03.png": "Relaxed casual reference.",
+    "avatar_04.png": "Night/city pose reference.",
+    "avatar_05.png": "Cozy casual reference.",
+    "avatar_06.png": "Outdoor/dress reference.",
+    "avatar_07.png": "Tech/deep-work reference.",
+    "avatar_08.png": "Sporty/casual reference.",
+    "catalyst_character_sheet.png": "Full visual reference sheet.",
+    "expression_*.png": "Expression references."
+  },
+  "runtime_model": "/assets/catalyst/catalyst.vrm"
+}

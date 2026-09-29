@@ -1,0 +1,20 @@
+services:
+  catalyst:
+    build: .
+    ports:
+      - "${PORT:-8000}:8000"
+    env_file:
+      - .env
+    environment:
+      CATALYST_DATA_ROOT: /app/catalyst_data
+      CATALYST_MEMORY_PATH: /app/catalyst_data/memory.db
+      CATALYST_MIND_PATH: /app/catalyst_data/mind.db
+      CATALYST_WORKSPACE: /app/workspace
+    volumes:
+      - catalyst_data:/app/catalyst_data
+      - catalyst_workspace:/app/workspace
+    restart: unless-stopped
+
+volumes:
+  catalyst_data:
+  catalyst_workspace:
